@@ -19,10 +19,14 @@ def hex_to_big_endian(byte_sequense):
 
 def little_endian_to_hex(little_endian, length):
     '''Return byte sequense for little_endian int'''
-    result = []
-    for i in range(length):
-        # shift and mask
-        result.append(little_endian >> (i * 8) & 0xff)
+    result = int_to_byte_array(little_endian, length)
+    return bytes(result)
+
+
+def big_endian_to_hex(big_endian, length):
+    '''Return byte sequense for big_endian int'''
+    result = int_to_byte_array(big_endian, length)
+    result.reverse()
     return bytes(result)
 
 
@@ -34,6 +38,15 @@ def bytes_to_int(byte_sequense):
     return functools.reduce(lambda x, y: x * 256 + y, byte_sequense, 0)
 
 
+def int_to_byte_array(number, length):
+    '''Return an array of bytes in reversed order from number'''
+    result = []
+    for i in range(length):
+        # shift and mask
+        result.append(number >> (i * 8) & 0xff)
+    return result
+
+
 if __name__ == '__main__':
     print('Vector 1')
     hex_string = 'ff00000000000000000000000000000000000000000000000000000000000000'
@@ -42,6 +55,7 @@ if __name__ == '__main__':
     print(f'Little-endian: {hex_to_little_endian(byte_sequence)}')
     print(f'Big-endian: {hex_to_big_endian(byte_sequence)}')
     print(f'Hex from little-endian: 0x{little_endian_to_hex(hex_to_little_endian(byte_sequence), 32).hex()}')
+    print(f'Hex from big-endian: 0x{big_endian_to_hex(hex_to_big_endian(byte_sequence), 32).hex()}')
     print()
     
     print('Vector 2')
@@ -51,6 +65,7 @@ if __name__ == '__main__':
     print(f'Little-endian: {hex_to_little_endian(byte_sequence)}')
     print(f'Big-endian: {hex_to_big_endian(byte_sequence)}')
     print(f'Hex from little-endian: 0x{little_endian_to_hex(hex_to_little_endian(byte_sequence), 32).hex()}')
+    print(f'Hex from big-endian: 0x{big_endian_to_hex(hex_to_big_endian(byte_sequence), 32).hex()}')
     print()
     
     print('Vector 3')
@@ -59,6 +74,8 @@ if __name__ == '__main__':
     print(f'Value: 0x{hex_string}')
     print(f'Little-endian: {hex_to_little_endian(byte_sequence)}')
     print(f'Big-endian: {hex_to_big_endian(byte_sequence)}')
+    print(f'Hex from little-endian: 0x{little_endian_to_hex(hex_to_little_endian(byte_sequence), 4).hex()}')
+    print(f'Hex from big-endian: 0x{big_endian_to_hex(hex_to_big_endian(byte_sequence), 4).hex()}')
     print()
     
     print('Vector 4')
