@@ -15,6 +15,17 @@ def hex_to_big_endian(byte_sequense):
     return bytes_to_int(byte_sequense)
 
 
+# int.to_bytes() is also present
+
+def little_endian_to_hex(little_endian, length):
+    '''Return byte sequense for little_endian int'''
+    result = []
+    for i in range(length):
+        # shift and mask
+        result.append(little_endian >> (i * 8) & 0xff)
+    return bytes(result)
+
+
 # Helper functions
 
 def bytes_to_int(byte_sequense):
@@ -30,6 +41,7 @@ if __name__ == '__main__':
     print(f'Value: 0x{hex_string}')
     print(f'Little-endian: {hex_to_little_endian(byte_sequence)}')
     print(f'Big-endian: {hex_to_big_endian(byte_sequence)}')
+    print(f'Hex from little-endian: 0x{little_endian_to_hex(hex_to_little_endian(byte_sequence), 32).hex()}')
     print()
     
     print('Vector 2')
@@ -38,6 +50,7 @@ if __name__ == '__main__':
     print(f'Value: 0x{hex_string}')
     print(f'Little-endian: {hex_to_little_endian(byte_sequence)}')
     print(f'Big-endian: {hex_to_big_endian(byte_sequence)}')
+    print(f'Hex from little-endian: 0x{little_endian_to_hex(hex_to_little_endian(byte_sequence), 32).hex()}')
     print()
     
     print('Vector 3')
