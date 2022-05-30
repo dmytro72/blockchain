@@ -10,6 +10,11 @@ def hex_to_little_endian(byte_sequense):
     return bytes_to_int(inversed_sequense)
 
 
+def hex_to_big_endian(byte_sequense):
+    '''Return a big endian value of the byte sequense'''
+    return bytes_to_int(byte_sequense)
+
+
 # Helper functions
 
 def bytes_to_int(byte_sequense):
@@ -24,6 +29,7 @@ if __name__ == '__main__':
     byte_sequence = bytes.fromhex(hex_string)
     print(f'Value: 0x{hex_string}')
     print(f'Little-endian: {hex_to_little_endian(byte_sequence)}')
+    print(f'Big-endian: {hex_to_big_endian(byte_sequence)}')
     print()
     
     print('Vector 2')
@@ -31,6 +37,7 @@ if __name__ == '__main__':
     byte_sequence = bytes.fromhex(hex_string)
     print(f'Value: 0x{hex_string}')
     print(f'Little-endian: {hex_to_little_endian(byte_sequence)}')
+    print(f'Big-endian: {hex_to_big_endian(byte_sequence)}')
     print()
     
     print('Vector 3')
@@ -38,6 +45,7 @@ if __name__ == '__main__':
     byte_sequence = bytes.fromhex(hex_string)
     print(f'Value: 0x{hex_string}')
     print(f'Little-endian: {hex_to_little_endian(byte_sequence)}')
+    print(f'Big-endian: {hex_to_big_endian(byte_sequence)}')
     print()
     
     print('Vector 4')
@@ -45,4 +53,5 @@ if __name__ == '__main__':
     byte_sequence = bytes.fromhex(hex_string)
     print(f'Value: 0x{hex_string}')
     print(f'Little-endian: {hex_to_little_endian(byte_sequence)}')
+    print(f'Big-endian: {hex_to_big_endian(byte_sequence)}')
     print()
